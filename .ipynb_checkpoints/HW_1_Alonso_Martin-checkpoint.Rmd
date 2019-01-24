@@ -1,0 +1,106 @@
+---
+title: "IST736 Text Mining - Homework 1"
+subtitle: "Martin Alonso"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+library(reticulate)
+use_python('/usr/bin/python')
+```
+
+## Introduction
+The objective of this exercise is to perform sentiment analysis on a data set of texts regarding how people feel about artificial intelligence (AI) on social media; and whether we can accurately categorize whether people have a positive or negative sentiment towards AI. 
+
+## Methodology
+For this exercise, I will mainly employ the use of the `sklearn` and `nltk` packages to understand the data set and predict the outcomes. I will also use `pandas`, `numpy`, `seaborn`, and `matplotlib.pyplot` to do initial data analysis, attempting to find any patterns in the data prior to modeling it. I'll also import the `re` package to clean the tweets. 
+
+```{python}
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import re 
+
+# sklearn package
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.svm import LinearSVC
+from sklearn.metrics import confusion_matrix
+
+# nltk package
+from nltk.classify import NaiveBayesClassifier
+from nltk.corpus import subjectivity
+from nltk.sentiment import SentimentAnalyzer
+from nltk.sentiment.util import *
+```
+
+As for the dataset, it was obtained from Twitter using the `twitterscape` package [1]. This was done prior to building this report as the data collection requires the use of the command prompt. The data set, however, includes 200 tweets that feature either 'AI' or 'Artificial Intelligence' within their text.
+The data was also transformed prior to loading the data, dropping columns regarding the url, html, likes, retweets, and fullname of the user; while also adding an id and label column. The label column is a categorical column that indicates the strengh of the sentiment from 1 to 5. In order: 1 = Purely negative, 2 = Somewhat negative, 3 = Neutral, 4 = Somewhat positive, 5 = Purely positive. This label was manually coded, so expect some slight bias in it. 
+
+```{python}
+# Load the data set. 
+df = pd.read_csv('ai_tweets.csv')
+print(df.shape)
+print(list(df.columns.values))
+```
+
+Having loaded the data, I'll clean it, removing special characters and converting uppercase letters into lowercase. This will allow me to easily vectorize all words in the data set. 
+```{python}
+# Transform the data
+df['label'] = df['label'].astype(object)
+cleanText = []
+for f in df['text']: 
+    text = re.sub('(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])', '', f).lower()
+    cleanText.append(text)
+cleanText = pd.DataFrame(cleanText)
+df2 = pd.merge(df, cleanText, how='outer', left_index=True, right_index=True)
+df2.rename(columns={0:'cleanText'}, inplace=True)
+```
+
+With the data clean, let's check how the sentiment labels are distributed.
+```{python}
+sns.countplot('label', data=df)
+_ = plt.xlabel('Sentiment Label')
+_ = plt.ylabel('Count')
+plt.show()
+```
+
+The counts for each sentiment label are almost equally distributed. With that, let's start performing some sentiment analysis. I'll first start with building both a training and testing set for the classifiers. After that, I'll use the `sklearn` package to build a first classifier, and then move to `nltk` package to build a second model to compare results. 
+
+```{python}
+# Convert label back to int
+df2['label'] = df['label'].astype('int')
+
+# Split the data into train and test sets.
+np.random.seed(42)
+x_train, x_test, y_train, y_test = train_test_split(df2['cleanText'], df2['label'], test_size=0.33, random_state=3)
+```
+
+With tha data sets split, time to use `sklearn`.
+```{python}
+tf = TfidfVectorizer(min_df=5, max_df=0.8, sublinear_tf=True, use_idf=True, stop_words='english')
+
+# Count and transform the training and testing sets
+x_train_tfidf = tf.fit_transform(x_train)
+x_test_tfidf = tf.transform(x_test)
+
+# Now to use an svm to create the model. 
+model1 = LinearSVC()
+model1.fit(x_train_tfidf, y_train)
+result1 = model1.predict(x_test_tfidf)
+```
+
+And now for `nltk`
+```{python}
+
+```
+
+## Results
+
+
+## Conclusions
+
+
+## References
+1. Twitterscrape package: https://github.com/taspinar/twitterscraper
