@@ -15,30 +15,28 @@ The objective of this exercise is to perform sentiment analysis on a data set of
 ## Methodology
 For this exercise, I will mainly employ the use of the `sklearn` and `nltk` packages to understand the data set and predict the outcomes. I will also use `pandas`, `numpy`, `seaborn`, and `matplotlib.pyplot` to do initial data analysis, attempting to find any patterns in the data prior to modeling it. I'll also import the `re` package to clean the tweets. 
 
-```{python}
+```{python, tidy=TRUE}
 import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import re 
 
-# sklearn package
+# sklearn package.
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.svm import LinearSVC
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
 
-# nltk package
-from nltk.classify import NaiveBayesClassifier
-from nltk.corpus import subjectivity
-from nltk.sentiment import SentimentAnalyzer
-from nltk.sentiment.util import *
+# nltk package.
+import nltk
+from nltk.classify import SklearnClassifier
 ```
 
 As for the dataset, it was obtained from Twitter using the `twitterscape` package [1]. This was done prior to building this report as the data collection requires the use of the command prompt. The data set, however, includes 200 tweets that feature either 'AI' or 'Artificial Intelligence' within their text.
-The data was also transformed prior to loading the data, dropping columns regarding the url, html, likes, retweets, and fullname of the user; while also adding an id and label column. The label column is a categorical column that indicates the strengh of the sentiment from 1 to 5. In order: 1 = Purely negative, 2 = Somewhat negative, 3 = Neutral, 4 = Somewhat positive, 5 = Purely positive. This label was manually coded, so expect some slight bias in it. 
+The data was also transformed prior to loading the data, dropping columns regarding the url, html, likes, retweets, and fullname of the user; while also adding an id and label column. The label column is a categorical column that indicates the strengh of the sentiment from 0 to 2. In order: 0 = Negative, 1 = Neutral, 2 = Positive. This label was manually coded, so expect some slight bias in it. 
 
-```{python}
+```{python, tidy=TRUE}
 # Load the data set. 
 df = pd.read_csv('ai_tweets.csv')
 print(df.shape)
@@ -46,8 +44,8 @@ print(list(df.columns.values))
 ```
 
 Having loaded the data, I'll clean it, removing special characters and converting uppercase letters into lowercase. This will allow me to easily vectorize all words in the data set. 
-```{python}
-# Transform the data
+```{python, tidy=TRUE}
+# Transform the data.
 df['label'] = df['label'].astype(object)
 cleanText = []
 for f in df['text']: 
@@ -59,7 +57,8 @@ df2.rename(columns={0:'cleanText'}, inplace=True)
 ```
 
 With the data clean, let's check how the sentiment labels are distributed.
-```{python}
+```{python, tidy=TRUE}
+# Check label distribution. 
 sns.countplot('label', data=df)
 _ = plt.xlabel('Sentiment Label')
 _ = plt.ylabel('Count')
@@ -68,8 +67,8 @@ plt.show()
 
 The counts for each sentiment label are almost equally distributed. With that, let's start performing some sentiment analysis. I'll first start with building both a training and testing set for the classifiers. After that, I'll use the `sklearn` package to build a first classifier, and then move to `nltk` package to build a second model to compare results. 
 
-```{python}
-# Convert label back to int
+```{python, tidy=TRUE}
+# Convert label back to int.
 df2['label'] = df['label'].astype('int')
 
 # Split the data into train and test sets.
@@ -78,10 +77,11 @@ x_train, x_test, y_train, y_test = train_test_split(df2['cleanText'], df2['label
 ```
 
 With tha data sets split, time to use `sklearn`.
-```{python}
-tf = TfidfVectorizer(min_df=5, max_df=0.8, sublinear_tf=True, use_idf=True, stop_words='english')
+```{python, tidy=TRUE}
+# Because we have such a small data set, I'm setting a minimum of 2 repeats per word.
+tf = TfidfVectorizer(min_df=2, max_df=0.8, sublinear_tf=True, use_idf=True, stop_words='english')
 
-# Count and transform the training and testing sets
+# Count and transform the training and testing sets.
 x_train_tfidf = tf.fit_transform(x_train)
 x_test_tfidf = tf.transform(x_test)
 
@@ -92,15 +92,91 @@ result1 = model1.predict(x_test_tfidf)
 ```
 
 And now for `nltk`
-```{python}
+```{python, tidy=TRUE}
+# Rebuild the sets using the x_train index to maintain comparability.
+indexTrain = x_train.index.values
+indexTest = x_test.index.values
+train = df2.iloc[indexTrain, [5, 1]]
+test = df2.iloc[indexTest, [5, 1]]
 
+# Clean the words in the training set tweets and create a list with words and labels.
+tweets = []
+for index, row in train.iterrows():
+    # Lower all words and keep those that appear 2 or more times. 
+    wordsFiltered = [e.lower() for e in row.cleanText.split() if len(e) >= 2]
+    wordsCleaned = [word for word in wordsFiltered
+        if 'http' not in word
+        and not word.startswith('@')
+        and not word.startswith('#')
+        and word != 'RT']
+    tweets.append((wordsCleaned, row.label))
+
+# Obtain words and frequency distributions for every word in tweet. 
+def getWordsTweets(tweets):
+    all = []
+    for (words, label) in tweets:
+        all.extend(words)
+    return all
+
+def getWordFeatures(wordlist):
+    wordlist = nltk.FreqDist(wordlist)
+    features = wordlist.keys()
+    return features
+wFeatures = getWordFeatures(getWordsTweets(tweets))
+
+def extractFeatures(document):
+    docWords = set(document)
+    features = {}
+    for word in wFeatures:
+        features['contains(%s)' % word] = (word in docWords)
+    return features   
+
+# Splits the test set into positive, neutral, and negative to predict within their categories.
+testPos = test[test['label'] == 2]
+testPos = testPos['cleanText']
+testNrl = test[test['label']==1]
+testNrl = testNrl['cleanText']
+testNeg = test[test['label'] == 0]
+testNeg = testNeg['cleanText']
+
+# Build the second model.
+trainingSet = nltk.classify.apply_features(extractFeatures,tweets)
+model2 = nltk.NaiveBayesClassifier.train(trainingSet)
 ```
 
 ## Results
+Having built the two models, it is time to compare the results and decide which one is more appropriate.
+```{python, echo=FALSE, tidy=TRUE}
+# SVM results.
+print('SVM Accuracy: %s ' % (accuracy_score(y_test, result1)))
 
+# NLTK results.
+negCnt = 0
+nrlCnt = 0
+posCnt = 0
+for obj in testNeg: 
+    res = model2.classify(extractFeatures(obj.split()))
+    if(res == 0): 
+        negCnt += 1
+for obj in testNrl:
+    res = model2.classify(extractFeatures(obj.split()))
+    if(res == 1):
+        nrlCnt += 1
+for obj in testPos: 
+    res =  model2.classify(extractFeatures(obj.split()))
+    if(res == 2): 
+        posCnt += 1
+
+total = negCnt + nrlCnt + posCnt
+print('NLTK Accuracy: %s ' % (total/len(test)))
+```
+
+We can see by the results that both models have low accuracy scores. However, this may be due to either the size of the dataset or the data not be clean enough to accurately predict the sentiment of the text. 
+Nevertheless, we can safely say that the NLTK model produces a superior accuracy score, correctly predicting 47.8 percent of tweet sentiment. 
 
 ## Conclusions
-
+We can conclude that the tools are suitable for the task. Albeit, we would need more data and pay closer attention to cleaning the data to build a model more capable of determining the overall sentiment of social media towards AI. 
+We also need to pay close attention to what people are tweeting about when talking about AI and our bias when categorizing the sentiment of these tweets. This plays a strong factor as to how we reckon people feel towards AI. 
 
 ## References
 1. Twitterscrape package: https://github.com/taspinar/twitterscraper
