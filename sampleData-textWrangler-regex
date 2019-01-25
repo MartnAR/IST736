@@ -1,0 +1,13 @@
+1. Remove 'Reply Quote Mark as Read' # Appears multiple times. Not needed.   regex: (^R\S*)\s(\Q\S*)\s\S\w+\s\w+\s\w+
+2. Remove lines with only spaces # noise regex: ^\s
+3. Remove Thread:WordsPost: WordsAuthor: # not necessary, all posts have this  
+    (^T\w*):+[A-Z-0-9]*\s*:\s\w*:\s*
+    (^T\w*):([A-Za-z0-9])*\s*\w*:\s([A-Za-z0-9]*)\s*\w*:\s*
+
+
+
+4. Remove PMStatus:Published # Same as 4
+
+5. Remove hyphens # Some words are preceded by hyphens
+
+
