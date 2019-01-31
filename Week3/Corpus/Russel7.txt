@@ -1,0 +1,252 @@
+﻿Baseball Therapy: Long Live the Shift!
+Russell A. Carleton 
+December 13, 2018 
+
+According to recent reports, Major League Baseball is considering banning the infield shift.
+*sigh*
+Warning! Gory Mathematical Details Ahead!
+Let’s take this one part at a time.
+1. How do you enforce the rule?
+There already are positioning rules in baseball. The pitcher is restricted to the pitching rubber. The catcher must be in the catching box behind home plate. No fielders may position themselves in foul territory. I guess we can’t claim restricting the shift violates some sort of purity in the game. I’m assuming no one is proposing we draw four circles on the infield dirt and mandate each of the four infielders stands within their assigned spot. The obvious way to do it would be a policy that there must be two infielders to the left of the imaginary line that runs from home plate to second base, and two on its right as the pitch is thrown.
+It’s reasonable to think that if teams believe a player is very likely to hit the ball to the right side (i.e., is shift-able), they’d have an infielder on the (imaginary, right?) line, perhaps even breaking toward a spot on the right side of the infield as the pitch is thrown. (That’s going to be a very tired shortstop.) Then again, maybe not, as there’s only so far they can run in the half-second it takes for the pitch to be thrown, even if they somehow gets a running start and get to the line just as the pitcher releases. And at that point, they’re not set to react to a ground ball, and might have to reverse field. This sort of motion strategy would also be useless if someone’s trying to steal second base. Maybe they just stand there right behind second and look longingly at the right side of the infield.
+If there’s going to be a rule, there would have to be some a penalty for breaking that rule. Is it an automatic ball? Is it a balk? If the line is imaginary, will it be called like the “neighborhood play” at second base? Is it at the discretion of the umpire? Is it a football-style penalty where, if the batter hits the ball out of the ballpark, the offense can decline the penalty and take the home run instead? Would the call be subject to replay review? It sounds simple to ban the shift, and any of those penalties would probably have the teeth to do it, but wait until the manager comes storming out of the dugout after a 3-2 count when the batter swings and misses but the umpire calls a ball because of an illegal formation, turning it into a walk. In the playoffs.
+If teams do decide to simply shade a fielder up the middle as far over as they can go while not crossing the imaginary line, this would leave them in a place called by the acronymati as a “partial shift” (Baseball Info Solutions calls it that) or a “strategic shift” (MLBAM/Statxast calls it that). Research has shown that in general, these partial shifts aren’t very good at actually defensing batted balls, yet they still have the walk-increasing problem associated with the full shift. In other words, it would neuter whatever tactical advantages the full shift has.
+Maybe that’s a feature rather than a bug, but I’m not sure what the point is of banning the shift. Is the goal to “get more offense into the game”? Is it to stop left-handed pull hitters from complaining so much? Is it to increase the number of balls in play? Well …
+2. The shift actually works now (sorta)
+Having three infielders on the right side (or the left side) against an extreme pull hitter really is a net positive in turning ground balls into outs rather than singles. There are some balls that would have been hits in a more standard formation, but then there are more balls that would have gotten through that turn into outs. That used to be the proof that the shift “worked.”
+I discovered through my own research that there was a side effect of the shift that undid all of that positive work. Pitchers walked more batters in front of the shift than they did in front of a standard defense, and that finding held even after we controlled for the fact that the batters who get shifted are a very specific bunch of players. There were also decreases in the number of strikeouts and small increases in other types of on-base events (doubles, triples, homers, hit batters) and that wiped out the gains from the singles saved. The walks were, by far, the biggest culprit. You can’t throw a guy out if he gets to walk to first base.
+When I went looking for the reason walks were happening, I landed on data that showed pitchers were staying out of the strike zone more than they normally would. In August, I found data that suggested this effect had been fading away over the last four years.
+Year
+League % Outside K Zone (Full Shift)
+League % Outside K Zone (No Shift)
+Difference
+2015
+54.1%
+51.1%
+3.0%
+2016
+53.3%
+50.9%
+2.4%
+2017
+52.6%
+50.9%
+1.7%
+2018
+52.2%
+50.8%
+1.4%
+It seemed like the hole in the shift was fixing itself. Well, not exactly. The way we can check is to look at how many walks were issued in front of the shift, again, controlling for who gets shifted. I looked for all players who had at least 50 non-shifted plate appearances and found their walk rate in those plate appearances. Let’s say someone walked 10 percent of the time when facing a 2-2 defense. If the shift makes no difference, we should see that they walk 10 percent of the time when facing a 1-3 (or a 3-1) defense. Looking at that on an individual level is going to be a problem because small sample sizes can get weird, but we can sum across the entire league to see how the shift works “in general.” Using this method, we see the following in front of the shift.
+Year
+Expected Walks
+Actual Walks
+Difference in rate per PA
+2015
+1326
+1460
++0.8%
+2016
+1889
+2157
++1.2%
+2017
+1881
+2120
++1.2%
+2018
+2400
+2656
++1.0%
+It looks like the “walk problem” in the shift is still (mostly) there, despite the fact that pitchers seem more comfortable coming into the zone.
+However, on-base percentage in front of the shift was down below expectations in 2018:
+Year
+Expected OBP
+Actual OBP
+Difference
+2015
+.331
+.325
+-.006
+2016
+.329
+.332
++.003
+2017
+.331
+.336
++.005
+2018
+.331
+.324
+-.006
+Now, the dirty little secret of the shift is that it never really had that much of an effect either way, so small random changes might drive whether the shift “worked” or not from one side to the other from year to year. Still, it produced more outs than we might have expected in 2018, and that’s a good thing if you’re on defense. However, the way it produced those extra outs was important.
+Here, we see the shift doing what it does best, which is suppressing BABIP on ground balls. But in 2018, it wasn’t the case that teams took a major leap in defensive positioning that allowed them to field ground balls much more efficiently. In 2018, the shift cut down on ground-ball BABIP about the same as in other years.
+Year
+Expected BABIP on GB
+Actual BABIP on GB
+Difference
+2015
+.245
+.205
+-.040
+2016
+.247
+.227
+-.020
+2017
+.244
+.217
+-.024
+2018
+.248
+.217
+-.021
+Instead, we saw a change in the way hitters approached the shift. In fact, there were reports during the season that, with shifts appearing at an ever-increasing rate and with hitters growing more frustrated with the shift, they focused on trying to hit the ball over the shift.  These numbers agree:
+Year
+Expected Fly Balls
+Actual Fly Balls
+Difference in rate per ball in play
+2015
+3246
+3180
+-0.6%
+2016
+4865
+4912
++0.3%
+2017
+4609
+4570
+-0.3%
+2018
+5927
+6171
++1.4%
+Fly balls tend to do one of two things. They either go over the wall for a home run (hooray!) or they fall into an outfielder’s glove (boo!) There’s a problem:
+Year
+Expected HR/FB
+Actual HR/FB
+Difference
+2015
+10.6%
+11.4%
++0.8%
+2016
+11.8%
+13.3%
++1.5%
+2017
+15.7%
+17.1%
++1.4%
+2018
+14.9%
+14.8%
+-0.1%
+In years past, when hitters tried to hit fly balls against the shift, they tended to hit fly balls that were better quality than we would have otherwise expected (again, controlling for what these same players did against a standard defense). Not this year.
+It’s not clear whether the increased fly-ball rate and decreased HR/FB rate are some sort of weird fluctuation or whether something really changed, but there’s another effect that’s driving the findings:
+Year
+Expected Line Drives
+Actual Line Drives
+Difference in rate per ball in play
+2015
+2940
+2878
+-0.6%
+2016
+4004
+4007
++0.0%
+2017
+3370
+3473
++0.8%
+2018
+4516
+4385
+-0.7%
+If hitters are trying to hit more fly balls, they’re doing so at the cost of hitting fewer line drives, or at least that’s what happened in 2018. If you trade something that has a BABIP in the .600s for something with a BABIP in the .100s, guess what’s going to happen to overall offensive production against the shift?
+In fact, using a linear weights approach, I can show exactly that. For all players who had at least 50 non-shifted PA, I looked at their linear weights per PA and then looked at what those hitters did against the shift. Since not all shifted plate appearances involved a hitter either with 50 or more PA not against the shift, I pro-rated the results of the analysis to the number of full shifts that happened in the relevant year.
+Year
+Difference
+2015
+-40.0 runs
+2016
++69.6 runs
+2017
++104.2 runs
+2018
+-163.1 runs
+Those are league-wide numbers, so in 2018 the average team got about 5.5 runs worth of value more when it shifted than we would have expected otherwise.
+One of two things happened to the shift in 2018. For all the controversy, the strategy itself has had very little impact on scoring in the game. In the past, the shift has been a slight negative for the defense overall. It’s plausible that in 2018, a couple of key factors wiggled randomly in favor of the defense and turned it into a slight net positive. It wouldn’t have been that long a trip, and we can even see that in 2015, the game had been there before.
+The other, slightly saucier explanation is that teams have progressively implemented a strategy they thought worked, but had a side effect they didn’t account for that turned it into a negative. The side effect still isn’t gone, but the defense was bailed out by the fact that batters felt the need to implement a counter-strategy (toward something that was actually helping them), and in doing so, torpedoed the benefits they had been getting. In other words, the shift hasn’t been a strategic triumph, but a comedy of errors.
+What’s undeniable is that we’re talking a strategy that at best adds or subtracts a handful of runs from each team over the course of a season. Banning the shift will not put much offense back into the game, if any.
+3. The shift does make the game ever-so-slightly more “boring”
+The shift has been blamed for encouraging a brand of baseball that’s not appealing to fans. League-wide strikeout rates (shift or no shift) are up significantly, with little remedy in sight, and walks aren’t that interesting either. The people want action!
+Using the same framework as above, where we look at what happened in front of the shift and use what batters did against a not-shifted defense to normalize our expectations, we can calculate how much effect the shift has on making the game more boring. I looked at how often a plate appearance ended in something other than a strikeout, walk, or hit batter. In other words, the batter hit the ball. (This is basically BABIP, but I put home runs back in, because people tend to like homers.)
+Year
+Expected Balls in Play/PA
+Actual Balls in Play/PA
+Difference per PA
+2015
+69.5%
+67.8%
+-1.7%
+2016
+68.7%
+68.2%
+-0.5%
+2017
+68.1%
+66.7%
+-1.4%
+2018
+68.3%
+67.1%
+-1.2%
+Most of that is the “walk problem” in the shift, which takes balls out of play, but it’s worth pointing out that the shift is “responsible” for eliminating something like 10-12 balls in play per team per year. Maybe two per month.
+Ah, but that’s not usually what people mean when they say “the ball in play.” After all, a ground out to the second baseman, wherever he may be playing, is a “ball in play,”and fans don’t like that either. Fans seem to want offense (but, on balls in play).
+Let’s see how much we can blame the shift for that.
+Year
+Expected Overall BABIP
+Actual BABIP
+Difference
+2015
+.301
+.283
+-.018
+2016
+.304
+.290
+-.016
+2017
+.290
+.280
+-.010
+2018
+.297
+.280
+-.017
+The shift does depress BABIP (that’s what it’s supposed to do), although we also know the “walk problem” puts those runners right back on base. But if we’re in the business of curating exactly that right kind of offense to make the fans happy, it’s worth pointing out that we’re talking about relatively minor numbers of balls in play that would have been hits turning into outs. Theoretically, banning the shift would bring those back, but it wouldn’t be that big an effect. There are other things that would make a larger difference.
+4. There’s a perfectly good way to make the shift go away organically
+Bunt.
+I’ve made this argument before (see the above link for the #GoryMath), so I’ll abbreviate it this way. All of the following statements are true:
+    • Bunting is really hard. More than half of all bunt attempts either go foul or are missed, and that’s the case whether you’re a novice or experienced bunter. There’s no guarantee the batter will even get the bunt down in fair territory, and there’s a decent chance he’ll whiff three times and strike out. 
+    • Even if the bunt goes fair, players have only been successful at getting to first base on about 60 percent of those bunt attempts against the shift. If you don’t tap it hard enough, the pitcher or catcher might be able to make the play. If you aim it too far off the line, the one infielder still on the left side might be able to throw you out. There are going to be plenty of times when you might as well have just grounded out the old-fashioned way. 
+    • By bunting, any hits you get will likely be singles, and there’s not really a chance to hit a home run. 
+    • Even conceding points 1, 2, and 3, the math still says bunting is worth it, and by a large margin. The reason is that by bunting, you greatly decrease your chances of making an out, and being able to say, “I didn’t make an out” is the most valuable thing a batter can say after his plate appearance. 
+If you don’t believe me, try it a few times. See how fast the defense leaves someone on that third-base line. And if it’s more balls in play and excitement you seek, imagine the fun of wondering whether Chris Davis will drop one down the line.
+(Narrator: No one was willing to try.)
+5. The shift’s biggest problem is that it violates the unwritten rules of the game (and United States culture)
+Let’s be real about the shift. The ratio of “amount of time spent complaining about the shift” to “what the shift actually does” is well out of balance. I’d propose the reason people spend so much time complaining about it has little to do with how it affects the game, but is instead about how it violates the unwritten rules of the game.
+    • It’s still a new development, historically speaking, and change will always spark protest. It’s more than that. There’s a Platonic form of what a 5-3 ground out is supposed to look like, and if that third baseman is playing in short right field, what the heck just happened? 
+    • The shift is very easy to see happening, and when it robs a batter of a hit, it’s also easy to see the ground ball entering the glove of the guy in the weird spot. It’s not as easy to see the hit that happens because of the shift. Thatt often takes the form of a guy who would have hit a ground ball, but with pitchers throwing more balls, he gets into a hitter’s count and lines a single into the outfield (or walks). So, it looks like the shift is a giant buzzkill when it isn’t really. 
+    • It hurts certain types of players more than others. After Jayson Stark of The Athletic broke the news that MLB was considering the ban, Joey Gallo tweeted: “This is all I want for Christmas.” Matt Carpenter replied: “I’d fly to the North Pole with you and ask Santa in person for this.” There’s a certain feeling of unfairness to the shift. If teams had found a strategy that allowed fielders to cover more ground in general, it would depress offense, but just about everyone would feel the pinch and it probably wouldn’t have the same sting to it. The shift feels like it targets specific players. 
+    • To call back to an old quote of mine: “In United States culture, it’s not nice to look like you’re trying too hard, especially for such a small reward and when you look weird doing it.” 
+    • The obvious counter-measure of bunting has its own baggage, both in terms of players who made it to the majors by hitting the ball far being asked to do something else entirely that required the restraint of force rather than its violent use, and because it would mean doing something obviously different in public that would have a high failure rate, even if it does make mathematical sense. 
+The shift has everything stacked against it from a cultural perspective, and maybe that’s the real reason there’s talk of banning it. I think it would be a major mistake to do so, but I’m going to have to argue that from a cultural perspective as well.  The actual strategy of the shift is a bit of a dud. I can’t say I blame teams for chasing it, even if the effect size might just be a few runs. Whether anyone likes it or not, if something is legal to do and there’s a chance it makes the team even slightly better (and has minimal cost to actually do), then teams will do it.
+The flip side of the case I’ve made above – that the shift actually has little effect on the overall game itself – is that it wouldn’t make much of a difference if the shift were banned. The game would become a little more “action packed” and “fan friendly,” and every little bit helps. What we’re really having here is a proxy war between baseball as a scientific endeavor to find peak efficiency and baseball as an artistic expression that, like all art, is meant to reflect the culture that produced it. It’s rare that the two sides come into such contrast, but the shift hits all of the right buttons.
+Commissioner Manfred, if you’re reading this, I can’t say I envy you on this choice, but I encourage you to leave the shift alone because I worry about the precedent it sets. The shift was meant as a strategic innovation, and judging by its ever-increasing use, teams sure seem to think it works. I’m a little more sanguine about its actual effects, but it seems dangerous to start clamping down on innovation in the game because it makes people a little uncomfortable.
+There’s always going to be a lobby of people who want their baseball to stay the same as it was when they were 12, and speaking as a former 12-year-old who’s rapidly approaching 40, I understand that pull. The uncomfortable truth is that nothing is the same as it was when you were 12, even those cultural assumptions that underpin some of the objections to the shift. There’s going to be another innovation that comes along (perhaps, we’ve already seen it in The Opener) and you’re not going to be able to shut them all down. If you do, then baseball itself eventually becomes a museum piece; a quaint game that has silly olde thyme rules from years gone by that it for some reason held on to.
+If you want to “fix” the game, I think you’re looking in the wrong place. Banning the shift probably does have some small short-term gain in terms of making the game “more fan-friendly,” but in the long run it does more harm than good to ban it.
+

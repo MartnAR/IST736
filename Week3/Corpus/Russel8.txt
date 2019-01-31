@@ -1,0 +1,191 @@
+﻿Baseball Therapy: The “Tell Him, Wash” Theory of WAR
+Russell A. Carleton 
+August 17, 2018 
+ 
+Last week, we talked about what happens in an emergency. What happens when you get to the 14th inning, and through some combination of pinch-hitting, injury, or “hey, why not?” a player appears in a defensive spot that he’s never been in before? Or at least that he doesn’t usually play. It turns out the answer is that—on average—is he’s awful at it. Not Little League awful, but the problem with defense is that the difference between the worst fielders and the ones who can proudly call themselves middle-of-the-road is making an extra 1-2 percent of the plays sent their way.
+To the naked eye, it may seem like a ground ball to second base is the same as a ground ball to shortstop. Maybe most of the time it is, functionally. But there are little differences between the positions, and sometimes you get one of those “different” ground balls that you’re not used to getting. Sometimes, you don’t make the play as a result. While that might just seem like a quirk of #WeirdBaseball, it has real implications for how we value baseball players. The reason has to do with how WAR(P) is calculated.
+WAR has assumed the head chair in discussions of how players are evaluated, and so it deserves close scrutiny. The worry I have with WAR is that it assumes players (or at least, position players) are infinitely fungible across all of the defensive positions. Maybe the people who designed it don’t actually believe that, but that’s the way it works. Famously, WAR conceptualizes worth as the value that a player brings over and above some bench/Triple-A/waiver wire baseline. If Mike Trout got hurt, the Angels would lose a lot of production from his absence, but they would still have a semi-competent player to put out there, so they wouldn’t lose everything.
+But could they just throw anyone out there? In reality, the Angels would have to find someone capable of playing center field, which isn’t always an easy task. Sure, anyone can stand out there, but it’s not always a good idea. WAR, strangely, sidesteps that. Sure, Trout can be compared to other center fielders easily, but WAR says that he can be compared to a left fielder as well—with the assumption that the left fielder would take a roughly five-run penalty in his defense by shifting to the harder position. This series of positional adjustments forms the backbone of WAR, and I worry that it might not be as strong of a backbone as we might think.
+For example, no matter how good your center fielder is, he’s never going to be a catcher. If a team’s catcher gets hurt, the team will call up another catcher to take his place, even if that catcher is a dreadful hitter. Catching involves skills that are too specific to allow someone—even a good defender at another position—to wing it. And last week, we saw evidence that the same applies for all of the other positions on the diamond, if in varying degrees for how severe the “new guy” penalty is.
+I got some good feedback from readers who had critiques about the work. One commenter pointed out that my method—looking at guys who played only a very small amount of time at a new position—selected out those who might have been good at the new spot, and because of that, got more chances. There’s also the issue of whether the poor performance was just first-time jitters, and maybe after a short adjustment period players would perform at a respectable level.
+Well …
+Warning! Gory Mathematical Details Ahead!
+I’m again using data from 1993-2017 as my sample, although I selected players a little differently this time. I found players who had already logged at least 2,700 opponent plate appearances at a position. (The reason for 2,700 is that 36 plate appearances is roughly one game, 150 games is a “full” season, and that’s 5,400 opponent plate appearances; so 2,700 PA is half a season of work.)
+After logging those 2,700 PA, they step into another position they’ve never before played at the MLB level. Because this is a historical data set, we know what eventually happened to them. Some of them made their debut at the new position as a cameo never to be repeated (I capped that at 180 PA for their career; five “games”). Some went on to play at least a “full” season there (5,400 PA), and some fell somewhere in the middle. But, we can focus on those first five games for all three groups, to see how they performed. Perhaps those in the very beginning stages of a long run at a spot would have brought up the class average, if only we had kept them in the sample.
+I also looked to see—in increments of five “games” (180 PA)—how well the group that eventually went on to play regularly at the spot did as they acclimated to the new spot. How long would it take them to reach league average, if they weren’t already there yet?
+Perhaps an example would better explain things. I used a lot of the same definitions for “defensive success” as last week. Because I’m working with play-by-play data, some of it from the 1990s, I’m using some very rough-hewn definitions for whether a fielder did his job or not (and as such, there should be some wiggle room left in my interpretations of the data), but over such a large data set, the noise tends to cancel out.
+We’ll start with first basemen, and look at how well they track down ground balls hit in their general direction. I credited a first baseman if a ball was listed as a grounder and he got to it, but debited him if the right fielder was the one who fielded it. (Again, that’s not the greatest fielding metric, but it can at least give us the correct order of magnitude.) We focus on the first 180 opponent plate appearances that a first baseman played. (Of course, not all of them resulted in something for him to do.) Across that data set, all first baseman successfully fielded a ground ball hit toward them 73.0 percent of the time.
+Now, looking at our three groups (emergency 1B only, eventual part-time 1B, and eventual full-time 1B) and focusing on how they did during those first days on first base, we see:
+Skill
+League Average
+Emergency-Only Group
+Part-Time Group
+Full-Time Group
+Range to field ground balls
+73.0%
+74.2%
+72.2%
+77.5%
+We saw last week that emergency first basemen similarly did better on this metric than the league, and here they do so again. However, our eventual full-timers at first base are better equipped to handle the position right off the bat than our emergency fill-ins. (Hold that thought for a moment, because we’ll need to talk about it.)
+Now, let’s go to our guys who eventually became full-time first basemen, and look at their development over time. This graph shows their success rate on that same skill, beginning with their first five games, then the next set of five, the next set of five, etc.
+ 
+Some up-and-down on this, but we see that other than a dip in games 20-25, our sample is largely above the league average for most of their first few games as first basemen. But, we can be more formal about that. I fitted a simple binary logistic regression looking at the first 1,800 opponent plate appearances for these “eventually full time,” looking at how well the plate appearance number (it was his 733rd PA or 1,458th PA) predicted whether he would be successful on the play, with the assumption that more experience would lead to more success. I then solved for when that line crossed the league-average rate, and expressed it in terms of “games” (again, one game = 36 PA). The full-time group starts above the league average on this skill in the regression and holds steady over time, so we will call that “zero games.”
+Skill
+League Average
+Emergency-Only Group (first 5 games)
+Part-Time Group (first 5 games)
+Full-Time Group (first 5 games)
+Full-timers Beat Average
+Range to field ground balls
+73.0%
+74.2%
+72.2%
+77.5%
+0 games
+We see the same pattern when we look at catching line drives hit toward them (with the adjustment that fewer line drives are actually caught by infielders). Let’s repeat the exercise with the skill with which first basemen seemed to struggle in our work from last week, turning ground balls hit to one of the other infielders into outs.
+Skill
+League Average
+Emergency-Only Group (first 5 games)
+Part-Time Group (first 5 games)
+Full-Time Group (first 5 games)
+Full-timers Beat Average
+Ground balls to infielders turned into outs
+96.3%
+95.1%
+95.9%
+96.4%
+0 games
+We again see that our emergency-only group had trouble picking throws, at least compared to the rest of the league, although eventual full-time first basemen actually did well, even in their first few reps. So maybe the reason that our emergency crew did so poorly last week was that only the awful ones stuck around in the sample?
+We need to talk about another selection bias, and a little bit of extra data to go with it. I asked my spreadsheet to tell me what month it was when each of the groups were having their first time at first base. In something that probably won’t surprise, the group that eventually became full-timers had its sample much more weighted toward April and May, while the emergency-only group was more likely to be spread across the baseball calendar. (This was true across all positions.) This makes sense because the emergency-only crew was probably picked by virtue of the fact that, of the nine guys available, they most closely resembled a first baseman. The eventual full-timers are more likely to have opened the season in a new spot.
+Filling in the gaps, someone from his team probably approached him at the end of the previous season and talked to him about how he felt about a move to first base. He was probably selected at leisure (rather than the heat of an extra-inning game) for his likelihood of succeeding at the spot. He probably spent the offseason preparing for his new role. While on Opening Day, he may never have played first base in a game situation (although, spring training?), he also isn’t totally unprepared. It’s probably fair to say that if we’re talking about the process of switching positions (at least to first base), our emergency-only group presents a pessimistic case. However, looking at our full-time group introduces biases that trend optimistic.
+I would suggest that the evidence points to there needing to be an adjustment period to a new position. Maybe that can take place in the offseason, when it doesn’t impact on-field play, but there needs to be something.
+***
+Let’s turn now to the other three infield spots. Or at least two of them.
+Here are the numbers for second basemen:
+Skill
+League Average
+Emergency-Only Group (first 5 games)
+Part-Time Group (first 5 games)
+Full-Time Group (first 5 games)
+Full-timers Beat Average
+Range to field ground balls
+68.2%
+70.5%
+74.1%
+68.7%
+0 games
+Turning fielded ground balls into outs
+97.7%
+96.2%
+97.9%
+96.9%
+31 games
+Catching line drives
+8.7%
+3.2%
+7.4%
+7.3%
+28 games
+Turning the double play*
+65.3%
+60.5%
+51.6%
+67.3%
+8 games
+*Sample size on this one is kinda small, and the regression says that the 67.3 percent initial performance is a bit of a fluke.
+Third basemen:
+Skill
+League Average
+Emergency-Only Group (first 5 games)
+Part-Time Group (first 5 games)
+Full-Time Group (first 5 games)
+Full-timers Beat Average
+Range to field ground balls
+78.0%
+75.5%
+79.2%
+81.3%
+**
+Turning fielded ground balls into outs
+94.4%
+93.1%
+91.5%
+91.8%
+46 games
+Catching line drives
+12.1%
+7.9%
+11.7%
+12.0%
+42 games
+**The data say that new third baseman show a steady decrease in their range over the first 50 games, to the point that they are below average by game 23.
+Our group that goes on to become full-time second and third basemen isn’t always even better than the emergency-only crew at first base, and even (mostly) with the benefit of the offseason to prepare for the move, they still need a good chunk of time to get up to speed on some important skills.
+I could report the shortstop numbers, but there’s a little problem. The sample size for players who have already logged 2,700 PA at one position and then try their hand at shortstop and then stick there for an entire year is extremely low. It’s likely that if you have the ability to play shortstop, you’re going to get some reps early in your career. That’s a rather telling story. You don’t see players “converting” to shortstop very often. The ones who do were probably already shortstops forced to another position because of circumstances (e.g., the Cubs played Addison Russell at second base so as not to move Starlin Castro off shortstop … and then they came to their senses.)
+I buy that a team could, if it so desired, train a reasonably qualified player to be a decent second or third baseman, with enough lead time to make the transition. We also see that they’re going to be pretty awful before that acclimation time. But we need to think about the practicalities of this. Imagine being a manager (or general manager) of a team that still has playoff aspirations. If your team suddenly lost its third baseman, you could either call up the guy with previous third base experience or the better hitter who’s actually a right fielder, and tell him to just do his best at third. The evidence suggests that the right fielder would eventually be OK at third base, but while learning on the job he’ll be pretty bad, at a rate that would probably equal double-digit runs below average over the course of a season.
+As a manager of a team aiming for the playoffs, whose name do you write on the lineup card today? You need this game. Yes, the right fielder is the better hitter, but how many bench/Triple-A right fielders are actually a full win better with their bat than a fellow bench player? If he were that much better, he’d probably already be starting somewhere. And yes, if you could somehow magically get that right fielder through the growing pains, he might make the better option, but you don’t have a time machine.
+The adjustment period we see here represents transactional friction in shifting players around to different positions. Some teams have the luxury of not caring about that friction, but that’s probably because they don’t have anything left to play for. This is why you see rebuilding teams pull these sorts of “oh, we’ll just try Smith at second base and see what we have there” gambits while contenders don’t.
+***
+Into the outfield, I’ll again be reporting only on two of the three positions, and for the same reason as the infield. There aren’t a lot of converts from one established position to center field. If you have the ability to play center field, you probably already have had a few chances before you get established at another position. If you’re not already playing center field, chances are you never will.
+So, we look at left fielders:
+Skill
+League Average
+Emergency-Only Group (first 5 games)
+Part-Time Group (first 5 games)
+Full-Time Group (first 5 games)
+Full-timers Beat Average
+Catching fly balls
+87.9%
+78.6%
+89.5%
+84.2%
+38 games
+Catching line drives
+22.1%
+22.4%
+25.5%
+23.1%
+***
+Stopping runners from advancing
+64.2%
+63.4%
+65.4%
+63.9%
+10 games
+***Again, the regression says that beginner left fielders lose some of their line-drive-catching mojo over the first 50 games, dropping below league average after 14 games.
+Right fielders:
+Skill
+League Average
+Emergency-Only Group (first 5 games)
+Part-Time Group (first 5 games)
+Full-Time Group (first 5 games)
+Full-timers Beat Average
+Catching fly balls
+88.2%
+87.3%
+87.5%
+88.5%
+0 games
+Catching line drives
+23.5%
+19.4%
+23.3%
+36.7%****
+30 games
+Stopping runners from advancing
+49.7%
+49.3%
+51.8%
+48.7%
+45 games
+****This appears to be a small-sample-size fluke
+We see that the kinds of guys who become regular left and/or right fielders are better than those who just take a test drive and never go back, but their performance is still below league average for a while as they learn the position. Once again, that’s a sample that already has the advantage of an offseason to prepare for the move.
+The Ron Washington Theory of WAR
+The assumption under-pinning WAR is that all players are fungible across positions. The only thing that differs between positions is some general “degree of difficulty” and we can make simple, linear adjustments to account for those differences. In other words, we assume a player who moves from shortstop to second base will continue where he left off at shortstop, and be a few runs better for playing the easier position. This assumption allows some other points of ease for calculating WAR, but it doesn’t appear to be true. Moving to a new position is, as the Ron Washington character in Moneyball puts it, incredibly hard.
+
+It can be overcome, but if we want to accurately model who would really be a candidate to replace a player, we need ditch the idea that anyone and everyone could. Looking through the data, we see that catchers, shortstops, and center fielders are generally only replaceable by players who have previous experience at the spot. Teams are always going to carry a second catcher, a utility infielder who “can handle shortstop,” and a spare outfielder who “can play center field.” They effectively have to.
+Teams can move players around the diamond to other positions they’ve never actually played and they’d eventually learn, but in the meantime the results won’t be pretty. And if they’re contending, they’re probably better off playing what looks to be a lesser player with position-specific experience. In a catch-22, starting the position-specific guy means the better guy they’d love to play in that spot, if only he knew how, can’t start getting his reps to make himself a better option, which means that tomorrow, he will still be a bad idea.
+That’s how the game really works. When we construct a reasonable pool of players from which we determine replacement level for a position, the player needs to show evidence that he’s actually played the position before. Sure, there are probably some shortstops who would do just fine if they were shifted over to second or third base, and never get the chance to prove it, and they will be lost in the shuffle, but requiring some proof of handling a position seems to match closer with reality than the current assumption that all you need to do is adjust stats by X runs.
+Maybe there’s room for the idea that first base is an exception to the rule, or that perhaps moving around the outfield could be done with a small adjustment, but the rest of the positions need a replacement level specific to that spot and based on a specific subset of players. To answer the questions that were brought up last week, yes looking only at “emergency” players at a position oversells how bad players are at first, but the evidence shows that even when we look at a friendlier group, transitioning to a new spot is still going to mean taking some lumps. And yes, after what looks like 30-ish games, depending on the position, a player can learn a new spot.
+I wouldn’t even swear to those numbers, but I think the message “it’s going to be an extended period of time and things aren’t going to be pretty while he’s doing it” has plenty of support, and that’s all I really want to say. Before we close, I want to say something out loud. Someone out there is already planning to use this to say, “You can move anyone to a new position, and in 30-40 games he’ll be league average.” Please don’t do that. A group hand-picked by their teams to make a switch—probably because the team figured they had the physical and mental tools to succeed there—and often with an offseason to prepare, generally needed a month or so of game experience to get all the way to average. That’s not even close to saying “anyone can do this.”
+The message is that, yes, an old hand can learn a new knot, but … Wash was right. It’s incredibly hard. And for the purposes of figuring out what would really happen if a player went away, we need to take how hard it is more seriously.
+
