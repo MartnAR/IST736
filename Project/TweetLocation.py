@@ -1,5 +1,5 @@
-import tweepy 
-import pandas as pd 
+import tweepy
+import pandas as pd
 
 class tweet_location:
     """
@@ -17,5 +17,3 @@ class tweet_location:
             return(tweet_data)
         except:
             print("Tweet ID not found")
-    
-    
